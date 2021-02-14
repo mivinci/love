@@ -1,31 +1,35 @@
-const firstdate = '2020-06-23 22:18';
+;(function () {
+  'use strict'
 
-function getInterval(init) {
-  const sum = new Date() - Date.parse(init);
-  const seconds = Math.floor((sum / 1000) % 60),
-    minutes = Math.floor((sum / 1000 / 60) % 60),
-    hours = Math.floor((sum / (1000 * 60 * 60)) % 24),
-    days = Math.floor(sum / (1000 * 60 * 60 * 24));
+  const firstdate = '2020-06-23 22:18';
 
-  return [days, hours, minutes, seconds];
-}
+  function getInterval(init) {
+    const sum = new Date() - Date.parse(init);
+    const seconds = Math.floor((sum / 1000) % 60),
+      minutes = Math.floor((sum / 1000 / 60) % 60),
+      hours = Math.floor((sum / (1000 * 60 * 60)) % 24),
+      days = Math.floor(sum / (1000 * 60 * 60 * 24));
 
-function run(firstdate) {
-  const doms = document.getElementsByClassName('time');
-
-  function deamon() {
-    const t = getInterval(firstdate);
-
-    for (let i = 0; i < doms.length; i++) {
-      if (i === 0) {
-        doms[i].innerText = t[i];
-        continue;
-      }
-      doms[i].innerText = ('0' + t[i]).slice(-2);
-    }
+    return [days, hours, minutes, seconds];
   }
 
-  setInterval(deamon, 1000);
-}
+  function run(firstdate) {
+    const doms = document.getElementsByClassName('time');
 
-run(firstdate);
+    function deamon() {
+      const t = getInterval(firstdate);
+
+      for (let i = 0; i < doms.length; i++) {
+        if (i === 0) {
+          doms[i].innerText = t[i];
+          continue;
+        }
+        doms[i].innerText = ('0' + t[i]).slice(-2);
+      }
+    }
+
+    setInterval(deamon, 1000);
+  }
+
+  run(firstdate);
+}())
