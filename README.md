@@ -1,2 +1,2 @@
 # wfsxjj.love
-A webpage that counts every seconds I'm in love with my girlfriend ❤️.
+A webpage that counts every second I spend with my girlfriend ❤️.
