@@ -3,15 +3,10 @@ package api
 import (
 	"fmt"
 	"net/http"
+
+	"github.com/mivinci/lover/db"
 )
 
-var count int
-
-func init() {
-	count = 0
-}
-
 func Count(w http.ResponseWriter, r *http.Request) {
-	count++
-	fmt.Fprintf(w, "%d", count)
+	fmt.Fprint(w, db.DBConnCount)
 }
