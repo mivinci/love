@@ -1,10 +1,10 @@
 ;(function () {
   'use strict'
 
-  const firstdate = '2020-06-23 22:18';
+  const first_day = '2020-06-23 22:18';
 
-  function getInterval(init) {
-    const sum = new Date() - Date.parse(init);
+  function parse(date) {
+    const sum = new Date() - Date.parse(date);
     const seconds = Math.floor((sum / 1000) % 60),
       minutes = Math.floor((sum / 1000 / 60) % 60),
       hours = Math.floor((sum / (1000 * 60 * 60)) % 24),
@@ -13,11 +13,11 @@
     return [days, hours, minutes, seconds];
   }
 
-  function run(firstdate) {
+  function run(date) {
     const doms = document.getElementsByClassName('time');
 
-    function deamon() {
-      const t = getInterval(firstdate);
+    function tick() {
+      const t = parse(date);
 
       for (let i = 0; i < doms.length; i++) {
         if (i === 0) {
@@ -28,8 +28,8 @@
       }
     }
 
-    setInterval(deamon, 1000);
+    setInterval(tick, 1000);
   }
 
-  run(firstdate);
+  run(first_day);
 }())
